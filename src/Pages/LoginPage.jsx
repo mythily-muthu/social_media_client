@@ -1,7 +1,40 @@
+import { useTheme } from "@emotion/react";
+import { Box, Typography, useMediaQuery } from "@mui/material";
 import React from "react";
-
+import Form from "./Form";
 const LoginPage = () => {
-  return <div>hiii</div>;
+  const theme = useTheme();
+  const isNonMobileScreens = useMediaQuery("(min-width:1000px");
+
+  return (
+    <Box>
+      <Box
+        width="100%"
+        backgroundColor={theme.palette.background.alt}
+        p="1rem 6%"
+        display="flex"
+        textAlign="center"
+        justifyContent="center"
+      >
+        <Typography fontWeight="bold" fontSize="32px" color="primary">
+          Snapstagram
+        </Typography>
+      </Box>
+
+      <Box
+        width={isNonMobileScreens ? "50%" : "93%"}
+        p="2rem"
+        m="2rem auto"
+        borderRadius="1.5rem"
+        backgroundColor={theme.palette.background.alt}
+      >
+        <Typography fontWeight="500" variant="h5" sx={{ mb: "1.5rem" }}>
+          Welcome to Snapstagram, the Social Media for Sociopaths!
+        </Typography>
+        <Form />
+      </Box>
+    </Box>
+  );
 };
 
 export default LoginPage;

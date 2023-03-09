@@ -48,7 +48,7 @@ const Navbar = () => {
         {/* snapstagram */}
         <Typography
           fontWeight="bold"
-          fontSize="clamp(1rem,2rem 2.25rem)"
+          fontSize="22px"
           color="primary"
           onClick={() => navigate("/home")}
           sx={{
@@ -136,7 +136,7 @@ const Navbar = () => {
           {/* close icon */}
           <Box display="flex" justifyContent="flex-end" p="1rem">
             <IconButton
-              onClick={() => isMobileMenuToggled(!isMobileMenuToggled)}
+              onClick={() => setIsMobileMenuToggled(!isMobileMenuToggled)}
             >
               <Close />
             </IconButton>
@@ -144,6 +144,7 @@ const Navbar = () => {
 
           {/*  Menu items*/}
           <FlexBetween
+            display="flex"
             gap="2rem"
             flexDirection="column"
             justifyContent="center"
@@ -167,7 +168,7 @@ const Navbar = () => {
                 value={""}
                 sx={{
                   backgroundColor: neutralLight,
-                  width: "15px",
+                  width: "150px",
                   borderRadius: "0.25rem",
                   p: "0.25rem 1rem",
                   "& .MuiSvgIcon-root": {
