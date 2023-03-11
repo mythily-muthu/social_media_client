@@ -116,7 +116,7 @@ const Form = () => {
             token: loggedInResponse.data.token,
           })
         );
-        fo;
+
         navigate("/home");
       }
     } catch (error) {
@@ -173,7 +173,7 @@ const Form = () => {
                   onChange={handleChange}
                   value={values.lastName}
                   name="lastName"
-                  error={Boolean(touched.lastName) && Boolean(touched.lastName)}
+                  error={Boolean(touched.lastName) && Boolean(errors.lastName)}
                   helperText={touched.lastName && errors.lastName}
                   sx={{ gridColumn: "span 2" }}
                 />
@@ -183,7 +183,7 @@ const Form = () => {
                   onChange={handleChange}
                   value={values.location}
                   name="location"
-                  error={Boolean(touched.location) && Boolean(touched.location)}
+                  error={Boolean(touched.location) && Boolean(errors.location)}
                   helperText={touched.location && errors.location}
                   sx={{ gridColumn: "span 4" }}
                 />
@@ -194,7 +194,7 @@ const Form = () => {
                   value={values.occupation}
                   name="occupation"
                   error={
-                    Boolean(touched.occupation) && Boolean(touched.occupation)
+                    Boolean(touched.occupation) && Boolean(errors.occupation)
                   }
                   helperText={touched.occupation && errors.occupation}
                   sx={{ gridColumn: "span 4" }}
@@ -243,7 +243,7 @@ const Form = () => {
               onChange={handleChange}
               value={values.email}
               name="email"
-              error={Boolean(touched.email) && Boolean(touched.email)}
+              error={Boolean(touched.email) && Boolean(errors.email)}
               helperText={touched.email && errors.email}
               sx={{ gridColumn: "span 4" }}
             />
@@ -254,7 +254,7 @@ const Form = () => {
               onChange={handleChange}
               value={values.password}
               name="password"
-              error={Boolean(touched.password) && Boolean(touched.password)}
+              error={Boolean(touched.password) && Boolean(errors.password)}
               helperText={touched.password && errors.password}
               sx={{ gridColumn: "span 4" }}
             />
