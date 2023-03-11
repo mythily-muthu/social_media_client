@@ -31,7 +31,9 @@ const Navbar = () => {
   const [isMobileMenuToggled, setIsMobileMenuToggled] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const user = useSelector((state) => state.user);
+  const user = useSelector((state) => state);
+
+  console.log("user:", user);
   const isNonMobileScreens = useMediaQuery("(min-width:1000px)");
 
   const theme = useTheme();
@@ -41,7 +43,7 @@ const Navbar = () => {
   const primaryLight = theme.palette.primary.light;
   const alt = theme.palette.background.alt;
 
-  //const fullName = `${user.firstName} ${user.lastName}`;
+  const fullName = `${user.firstName} ${user.lastName}`;
   return (
     <FlexBetween padding="1rem 6%" backgroundColor={alt}>
       <FlexBetween gap="1.75rem">
@@ -92,7 +94,7 @@ const Navbar = () => {
           <Help sx={{ fontSize: "25px" }} />
           <FormControl variant="standard" value={""}>
             <Select
-              value={""}
+              value={fullName}
               sx={{
                 backgroundColor: neutralLight,
                 width: "15px",
@@ -108,8 +110,8 @@ const Navbar = () => {
               }}
               input={<InputBase />}
             >
-              <MenuItem value={""}>
-                <Typography>{""}</Typography>
+              <MenuItem value={fullName}>
+                <Typography>{fullName}</Typography>
               </MenuItem>
               <MenuItem onClick={() => dispatch(setLogout())}>Log Out</MenuItem>
             </Select>
@@ -165,7 +167,7 @@ const Navbar = () => {
             <Help sx={{ fontSize: "25px" }} />
             <FormControl variant="standard" value={""}>
               <Select
-                value={""}
+                value={fullName}
                 sx={{
                   backgroundColor: neutralLight,
                   width: "150px",
@@ -181,8 +183,8 @@ const Navbar = () => {
                 }}
                 input={<InputBase />}
               >
-                <MenuItem value={""}>
-                  <Typography>{""}</Typography>
+                <MenuItem value={fullName}>
+                  <Typography>{fullName}</Typography>
                 </MenuItem>
                 <MenuItem onClick={() => dispatch(setLogout())}>
                   Log Out

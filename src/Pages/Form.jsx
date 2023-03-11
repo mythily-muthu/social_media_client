@@ -105,22 +105,18 @@ const Form = () => {
     try {
       const loggedInResponse = await axios.post(
         "http://localhost:6001/auth/login",
-        values,
-        {
-          headers: { "Content-Type": "application/json" },
-        }
+        values
       );
 
-      const loggedIn = loggedInResponse.data;
-      console.log("loggine:", loggedIn);
       onSubmitProps.resetForm();
-      if (loggedIn.status) {
+      if (loggedInResponse.status == 200) {
         dispatch(
           setLogin({
-            user: loggedIn.user,
-            token: loggedIn.token,
+            user: loggedInResponse.data.user,
+            token: loggedInResponse.data.token,
           })
         );
+        fo;
         navigate("/home");
       }
     } catch (error) {
@@ -166,7 +162,7 @@ const Form = () => {
                   value={values.firstName}
                   name="firstName"
                   error={
-                    Boolean(touched.firstName) && Boolean(touched.firstName)
+                    Boolean(touched.firstName) && Boolean(errors.firstName)
                   }
                   helperText={touched.firstName && errors.firstName}
                   sx={{ gridColumn: "span 2" }}
