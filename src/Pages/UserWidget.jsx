@@ -1,9 +1,10 @@
 import { ManageAccountsOutlined } from "@mui/icons-material";
-import { Divider, Typography } from "@mui/material";
+import { Box, Divider, Typography, useTheme } from "@mui/material";
 import axios from "axios";
+import FlexBetween from "components/FlexBetween";
 import UserImage from "components/UserImage";
 import WidgetWrapper from "components/WidgetWrapper";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
@@ -17,7 +18,7 @@ const UserWidget = ({ userId, picturePath }) => {
 
   // calling api to grab the user
   const getUser = async () => {
-    let Url = `http://localhost:3001/users/${userId}`; //getting the user details with id
+    let Url = `http://localhost:6001/users/${userId}`; //getting the user details with id
     let response = await axios.get(Url, {
       headers: { Authorization: `Bearer ${token}` }, //token verification
     });
@@ -60,7 +61,7 @@ const UserWidget = ({ userId, picturePath }) => {
               sx={{
                 "&:hover": {
                   color: palette.primary.light,
-                  cursor: pointer,
+                  cursor: "pointer",
                 },
               }}
             >
