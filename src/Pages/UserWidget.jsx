@@ -1,4 +1,9 @@
-import { ManageAccountsOutlined } from "@mui/icons-material";
+import {
+  EditOutlined,
+  LocationOnOutlined,
+  ManageAccountsOutlined,
+  WorkOutlineOutlined,
+} from "@mui/icons-material";
 import { Box, Divider, Typography, useTheme } from "@mui/material";
 import axios from "axios";
 import FlexBetween from "components/FlexBetween";
@@ -15,7 +20,7 @@ const UserWidget = ({ userId, picturePath }) => {
   const token = useSelector((state) => state.token);
   const dark = palette.neutral.dark;
   const medium = palette.neutral.medium;
-
+  const main = palette.neutral.main;
   // calling api to grab the user
   const getUser = async () => {
     let Url = `http://localhost:6001/users/${userId}`; //getting the user details with id
@@ -24,7 +29,6 @@ const UserWidget = ({ userId, picturePath }) => {
     });
     const data = response.data;
     setUser(data);
-    console.log("res:", response.data);
   };
   useEffect(() => {
     getUser();
@@ -67,15 +71,79 @@ const UserWidget = ({ userId, picturePath }) => {
             >
               {firstName} {lastName}
             </Typography>
-            <Typography>{friends.length} friends</Typography>
+            <Typography color={medium}>{friends.length} friends</Typography>
           </Box>
-          <ManageAccountsOutlined />
         </FlexBetween>
-
-        <Divider />
-
-        {/* SECOND ROW */}
+        <ManageAccountsOutlined />
       </FlexBetween>
+      <Divider />
+
+      {/* SECOND ROW */}
+      <Box p="1rem 0">
+        <Box display="flex" alignItems="center" gap="1rem" mb="0.5rem">
+          <LocationOnOutlined fontSize="large" sx={{ color: main }} />
+          <Typography color={medium}>{location}</Typography>
+        </Box>
+        <Box display="flex" alignItems="center" gap="1rem">
+          <WorkOutlineOutlined fontSize="large" sx={{ color: main }} />
+          <Typography color={medium}>{occupation}</Typography>
+        </Box>
+      </Box>
+      <Divider />
+      {/* THIRD ROW */}
+      <Box p="1rem 0">
+        <FlexBetween mb="0.5rem">
+          <Typography color={medium}>Who's viewed your profile</Typography>
+          <Typography color={main} fontWeight="500">
+            {viewedProfile}
+          </Typography>
+        </FlexBetween>
+        <FlexBetween>
+          <Typography color={medium}>Who's viewed your profile</Typography>
+          <Typography color={main} fontWeight="500">
+            {impressions}
+          </Typography>
+        </FlexBetween>
+      </Box>
+      <Divider />
+      {/* FOURTH ROW */}
+      <Box p="1rem 0">
+        <Typography>Social Profiles</Typography>
+        {/* twitter */}
+        <FlexBetween gap="1rem" mb="0.5rem">
+          <FlexBetween gap="1rem">
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTg4UyCGJ84IQdidIDvyaDHHxjML2kyxT-oDg&usqp=CAU"
+              alt="twitter"
+              width="20px"
+              sx={{ color: main }}
+              height="20px"
+            />
+            <Box>
+              <Typography color={main}>Twitter</Typography>
+              <Typography color={medium}>Social NetWork</Typography>
+            </Box>
+          </FlexBetween>
+          <EditOutlined />
+        </FlexBetween>
+        {/* linkedin */}
+        <FlexBetween gap="1rem" mb="0.5rem">
+          <FlexBetween gap="1rem">
+            <img
+              src="https://png.pngtree.com/element_our/md/20180509/md_5af2d4cb7fc9b.jpg"
+              alt="linkedin"
+              width="20px"
+              sx={{ color: main }}
+              height="20px"
+            />
+            <Box>
+              <Typography color={main}>Linkedin</Typography>
+              <Typography color={medium}>NetWork Platform</Typography>
+            </Box>
+          </FlexBetween>
+          <EditOutlined />
+        </FlexBetween>
+      </Box>
     </WidgetWrapper>
   );
 };
