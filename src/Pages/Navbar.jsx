@@ -25,7 +25,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { setMode, setLogout } from "state";
 import { useNavigate } from "react-router-dom";
 import FlexBetween from "components/FlexBetween";
-import { borderRadius } from "@mui/system";
 
 const Navbar = () => {
   const [isMobileMenuToggled, setIsMobileMenuToggled] = useState(false);
@@ -38,7 +37,7 @@ const Navbar = () => {
 
   const theme = useTheme();
   const neutralLight = theme.palette.neutral.light;
-  const neutralDark = theme.palette.neutral.Dark;
+  const dark = theme.palette.neutral.dark;
   const background = theme.palette.background.default;
   const primaryLight = theme.palette.primary.light;
   const alt = theme.palette.background.alt;
@@ -50,7 +49,7 @@ const Navbar = () => {
         {/* snapstagram */}
         <Typography
           fontWeight="bold"
-          fontSize="22px"
+          fontSize="clamp(1rem, 2rem, 2.25rem)"
           color="primary"
           onClick={() => navigate("/home")}
           sx={{
@@ -71,7 +70,7 @@ const Navbar = () => {
             gap="3rem"
             padding="0.1rem 1.5rem"
           >
-            <InputBase placeholder="Search" />
+            <InputBase placeholder="Search..." />
             <IconButton>
               <Search />
             </IconButton>
@@ -86,18 +85,18 @@ const Navbar = () => {
             {theme.palette.mode === "dark" ? (
               <DarkMode sx={{ fontSize: "25px" }} />
             ) : (
-              <LightMode sx={{ fontSize: "25px" }} />
+              <LightMode sx={{ color: dark, fontSize: "25px" }} />
             )}
           </IconButton>
           <Message sx={{ fontSize: "25px" }} />
           <Notifications sx={{ fontSize: "25px" }} />
           <Help sx={{ fontSize: "25px" }} />
-          <FormControl variant="standard" value={""}>
+          <FormControl variant="standard" value={fullName}>
             <Select
               value={fullName}
               sx={{
                 backgroundColor: neutralLight,
-                width: "15px",
+                width: "150px",
                 borderRadius: "0.25rem",
                 p: "0.25rem 1rem",
                 "& .MuiSvgIcon-root": {
@@ -159,13 +158,13 @@ const Navbar = () => {
               {theme.palette.mode === "dark" ? (
                 <DarkMode sx={{ fontSize: "25px" }} />
               ) : (
-                <LightMode sx={{ fontSize: "25px" }} />
+                <LightMode sx={{ color: dark, fontSize: "25px" }} />
               )}
             </IconButton>
             <Message sx={{ fontSize: "25px" }} />
             <Notifications sx={{ fontSize: "25px" }} />
             <Help sx={{ fontSize: "25px" }} />
-            <FormControl variant="standard" value={""}>
+            <FormControl variant="standard" value={fullName}>
               <Select
                 value={fullName}
                 sx={{
