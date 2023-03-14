@@ -2,31 +2,32 @@ import axios from "axios";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setPosts } from "state";
+import PostWidget from "./PostWidget";
 
-const PostsWidget = () => {
+const PostsWidget = ({ userId, isProfile }) => {
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.posts);
   const token = useSelector((state) => state.token);
 
+  // ALL USERS POSTS
   const getPosts = async () => {
     const response = await axios.get("http://localhost:6001/posts", {
       headers: { Authorization: `Bearer ${token}` },
     });
-
     const posts = response.data;
     dispatch(setPosts({ posts }));
   };
 
+  // ALL POSTS OF A SINGLE USER
   const getUserPosts = async () => {
-    const response = await fetch(
+    const response = await axios.get(
       `http://localhost:6001/posts/${userId}/posts`,
       {
-        method: "GET",
         headers: { Authorization: `Bearer ${token}` },
       }
     );
-    const data = await response.json();
-    dispatch(setPosts({ posts: data }));
+    let posts = response.data;
+    dispatch(setPosts({ posts }));
   };
 
   useEffect(() => {
@@ -35,8 +36,7 @@ const PostsWidget = () => {
     } else {
       getPosts();
     }
-    getPosts();
-  }, []);
+  }, [userId, isProfile, token]);
 
   return (
     <>
@@ -53,7 +53,7 @@ const PostsWidget = () => {
           likes,
           comments,
         }) => (
-          <PostsWidget
+          <PostWidget
             key={_id}
             postId={_id}
             postuserId={userId}
