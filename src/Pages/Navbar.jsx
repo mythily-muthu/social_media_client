@@ -31,7 +31,6 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((state) => state.user);
-
   const isNonMobileScreens = useMediaQuery("(min-width:1000px)");
 
   const theme = useTheme();
@@ -111,7 +110,14 @@ const Navbar = () => {
               <MenuItem value={fullName}>
                 <Typography>{fullName}</Typography>
               </MenuItem>
-              <MenuItem onClick={() => dispatch(setLogout())}>Log Out</MenuItem>
+              <MenuItem
+                onClick={() => {
+                  dispatch(setLogout());
+                  navigate("/");
+                }}
+              >
+                Log Out
+              </MenuItem>
             </Select>
           </FormControl>
         </FlexBetween>
