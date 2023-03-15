@@ -28,8 +28,8 @@ import { setPosts } from "state";
 
 const MyPostWidget = ({ picturePath }) => {
   const dispatch = useDispatch();
-  const [isImage, setIsImage] = useState(false);
-  const [image, setImage] = useState(null);
+  const [isImage, setIsImage] = useState(false); //image upload section, initially not toggled
+  const [image, setImage] = useState(null); //wheather any image is selected for post /upload
   const [post, setPost] = useState("");
   const { palette } = useTheme();
   const { _id } = useSelector((state) => state.user);
@@ -52,7 +52,11 @@ const MyPostWidget = ({ picturePath }) => {
       headers: { Authorization: `Bearer ${token}` }, //token verification
     });
     let posts = response.data;
+
+    // sort the posts by the creation date in descending order
+    posts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
     dispatch(setPosts({ posts }));
+
     // reset post string and image
     setImage(null);
     setPost("");

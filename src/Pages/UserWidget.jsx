@@ -21,6 +21,7 @@ const UserWidget = ({ userId, picturePath }) => {
   const dark = palette.neutral.dark;
   const medium = palette.neutral.medium;
   const main = palette.neutral.main;
+
   // calling api to grab the user
   const getUser = async () => {
     let Url = `http://localhost:6001/users/${userId}`; //getting the user details with id
